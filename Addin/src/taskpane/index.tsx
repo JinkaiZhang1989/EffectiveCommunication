@@ -1,7 +1,7 @@
 import 'office-ui-fabric-react/dist/css/fabric.min.css';
 import App from './components/App';
 import Configuration from "./core/Configuration";
-import EffectiveCommunicationActionCreaor from "./actioncreator/EffectiveComunicationActionCreator";
+import EffectiveCommunicationActionCreator from "./actioncreator/EffectiveComunicationActionCreator";
 
 import { AppContainer } from 'react-hot-loader';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
@@ -24,16 +24,6 @@ const render = (Component) => {
 /* Render application after Office initializes */
 Office.initialize = () => {
     Configuration.officejsHasBeenInitialized = true;
-    EffectiveCommunicationActionCreaor.Load();
+    EffectiveCommunicationActionCreator.Load();
     render(App);
 };
-
-/* Initial render showing a progress bar */
-render(App);
-
-if ((module as any).hot) {
-    (module as any).hot.accept('./components/App', () => {
-        const NextApp = require('./components/App').default;
-        render(NextApp);
-    });
-}

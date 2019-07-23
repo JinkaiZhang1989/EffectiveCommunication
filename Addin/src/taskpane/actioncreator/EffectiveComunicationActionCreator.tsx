@@ -1,19 +1,19 @@
 import { expirable, ExpirableInBackground, ExpirationTypes } from "../core/Expirable";
 
 @expirable()
-export class EffectiveCommunicationActionCreaor {
+export class EffectiveCommunicationActionCreator {
     @expirable(ExpirationTypes.ByEvery_Minutes, 0.1 /*polling every 6 seconds*/, ExpirableInBackground.Allowed)
     public async Load() {
         console.log(`[Jinkai] Hello world`);
     }
 
     public getToken(): string {
-        return "";
+        return Office.context.roamingSettings.get("token");
     }
 
-    public setToken(): void {
-
+    public setToken(token: string): void {
+        Office.context.roamingSettings.set("token", token);
     }
 }
 
-export default new EffectiveCommunicationActionCreaor();
+export default new EffectiveCommunicationActionCreator();
