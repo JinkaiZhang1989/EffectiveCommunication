@@ -10,12 +10,10 @@ import * as ReactDOM from 'react-dom';
 
 initializeIcons();
 
-const title = 'Contoso Task Pane Add-in';
-
 const render = (Component) => {
     ReactDOM.render(
         <AppContainer>
-            <Component title={title} isOfficeInitialized={Configuration.officejsHasBeenInitialized} />
+            <Component />
         </AppContainer>,
         document.getElementById('container')
     );
