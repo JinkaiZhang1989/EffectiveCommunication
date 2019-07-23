@@ -81,9 +81,9 @@
 
             <ExtensionPoint xsi:type="MessageComposeCommandSurface">
               <OfficeTab id="TabDefault">
-                <Group id="msgReadGroup">
+                <Group id="msgComposeGroup">
                   <Label resid="GroupLabel" />
-                  <Control xsi:type="Button" id="msgReadOpenPaneButton">
+                  <Control xsi:type="Button" id="msgComposeOpenPaneButton">
                     <Label resid="TaskpaneButton.Label" />
                     <Supertip>
                       <Title resid="TaskpaneButton.Label" />
@@ -105,9 +105,9 @@
 
             <ExtensionPoint xsi:type="AppointmentOrganizerCommandSurface">
               <OfficeTab id="TabDefault">
-                <Group id="msgReadGroup">
+                <Group id="appointmentOrgGroup">
                   <Label resid="GroupLabel" />
-                  <Control xsi:type="Button" id="msgReadOpenPaneButton">
+                  <Control xsi:type="Button" id="appointmentOrgOpenPaneButton">
                     <Label resid="TaskpaneButton.Label" />
                     <Supertip>
                       <Title resid="TaskpaneButton.Label" />
@@ -129,9 +129,9 @@
 
             <ExtensionPoint xsi:type="AppointmentAttendeeCommandSurface">
               <OfficeTab id="TabDefault">
-                <Group id="msgReadGroup">
+                <Group id="appointmentAttGroup">
                   <Label resid="GroupLabel" />
-                  <Control xsi:type="Button" id="msgReadOpenPaneButton">
+                  <Control xsi:type="Button" id="appointmentAttOpenPaneButton">
                     <Label resid="TaskpaneButton.Label" />
                     <Supertip>
                       <Title resid="TaskpaneButton.Label" />

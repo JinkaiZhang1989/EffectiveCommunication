@@ -82,7 +82,7 @@ class ActionsQueue {
         const nowInUTC = ExpirableUtils.nowInUTC();
         const newExpirablesArray: IExpirationBase[] = [];
         this.expirablesMonitoringArray.map(
-            (value: IExpirationBase, index: number, arr: IExpirationBase[]) => {
+            (value: IExpirationBase) => {
                 if (!!value.exprationInUTC && value.exprationInUTC < nowInUTC) {
                     newExpirablesArray.push(ExpirableUtils.ExpireMeAndReschedule(value));
                 } else {
@@ -263,37 +263,38 @@ class ExpirableUtils {
     }
 
     public static registerWithItemChangedEvent<T extends IExpirationBase>(expirable: T) {
-        const MAX_RETRY_COUNT: number = 10;
-        let retryCount = 0;
-        const timeoutId = window.setInterval(
-            (expirable: T) => {
-                if (Configuration.isCurrentItemReady && !!Office.context.mailbox.addHandlerAsync) {
-                    Office.context.mailbox.addHandlerAsync(
-                        Office.EventType.ItemChanged,
-                        (eventArgs) => {
-                            // This is the event handler.
+        console.log(expirable);
+        // const MAX_RETRY_COUNT: number = 10;
+        // let retryCount = 0;
+        // const timeoutId = window.setInterval(
+        //     (expirable: T) => {
+        //         if (Configuration.isCurrentItemReady && !!Office.context.mailbox.addHandlerAsync) {
+        //             Office.context.mailbox.addHandlerAsync(
+        //                 Office.EventType.ItemChanged,
+        //                 (eventArgs) => {
+        //                     // This is the event handler.
 
-                            if (!eventArgs.initialData) {
-                                return; // don't refresh when folder change. item change will be issued again when the item is selected in new folder.
-                            }
+        //                     if (!eventArgs.initialData) {
+        //                         return; // don't refresh when folder change. item change will be issued again when the item is selected in new folder.
+        //                     }
 
-                            expirable.action.actionCreatorFunction.apply(expirable.target, []);
-                        },
-                        (asyncResult) => {
-                            // This is the event registration handler. This will be called ONCE when the event is registered.
-                            // remove the interval
-                            window.clearInterval(timeoutId);
-                        });
-                } else {
-                    if (retryCount <= MAX_RETRY_COUNT) {
-                        retryCount++;
-                    } else {
-                        window.clearInterval(timeoutId);
-                    }
-                }
-            },
-            3000,
-            expirable);
+        //                     expirable.action.actionCreatorFunction.apply(expirable.target, []);
+        //                 },
+        //                 (asyncResult) => {
+        //                     // This is the event registration handler. This will be called ONCE when the event is registered.
+        //                     // remove the interval
+        //                     window.clearInterval(timeoutId);
+        //                 });
+        //         } else {
+        //             if (retryCount <= MAX_RETRY_COUNT) {
+        //                 retryCount++;
+        //             } else {
+        //                 window.clearInterval(timeoutId);
+        //             }
+        //         }
+        //     },
+        //     3000,
+        //     expirable);
     }
 
     // expire the current object

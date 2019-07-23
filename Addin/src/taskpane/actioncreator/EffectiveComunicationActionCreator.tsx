@@ -6,6 +6,14 @@ export class EffectiveCommunicationActionCreaor {
     public async Load() {
         console.log(`[Jinkai] Hello world`);
     }
+
+    public getToken(): string {
+        return "";
+    }
+
+    public setToken(): void {
+
+    }
 }
 
 export default new EffectiveCommunicationActionCreaor();
